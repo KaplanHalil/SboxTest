@@ -39,6 +39,8 @@ print("S is bent: ", S.is_bent())
 # Significance: Bent S-boxes resist linear cryptanalysis exceptionally well.
 # Expected: False (most block cipher S-boxes are not strictly bent).
 
+print("S is almost bent: ", S.is_almost_bent())
+
 # 6. Check if the S-box is an involution (S(S(x)) = x)
 print("S has an inverse: ", S.is_involution())  
 # Purpose: Verify if encryption and decryption use the same S-box.
@@ -50,6 +52,9 @@ print("S is plateaued: ", S.is_plateaued())
 # Purpose: Check if the Walsh spectrum takes on few distinct values.
 # Significance: Plateaued S-boxes may have desirable cryptographic properties.
 # Expected: True for some S-boxes.
+
+
+print("Nonlinearity of S:", S.nonlinearity())
 
 # 8. Maximal algebraic degree of the S-box
 print("Maximal algebraic degree of all its component functions:", S.max_degree())  
