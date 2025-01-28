@@ -12,8 +12,19 @@ sbox_hex = cipher.SBOX
 # Convert to decimal
 SBOX_DEC = [int(x) for x in sbox_hex]
 
-# Create the S-box in SageMath
 S = SBox(SBOX_DEC)
+
+
+# Check if the S-box is 1-1 (bijective)
+def is_one_to_one(sbox):
+    # Create a set of unique outputs
+    unique_outputs = set(sbox)
+    return len(unique_outputs) == len(sbox)
+
+print("S is 1-1:", is_one_to_one(SBOX_DEC))  
+# Purpose: Verify that every input maps to a unique output.
+# Significance: A bijective S-box is necessary for ensuring reversibility in block cipher operations.
+# Expected: True for cryptographically secure S-boxes.
 
 # 1. Check if the S-box has a linear structure (weakness if True)
 print("S is linear: ", S.has_linear_structure())  
@@ -75,7 +86,7 @@ print("Minimal algebraic degree of all its component functions:", S.min_degree()
 # Expected: Reasonably high value.
 
 # 10. Maximal value in the Difference Distribution Table (DDT)
-print("Max value in DDT:", S.maximal_difference_probability_absolute())  
+print("Max value in DDT:", S.differential_uniformity())  
 # Purpose: Evaluate resistance to differential cryptanalysis.
 # Significance: Lower values indicate stronger resistance.
 # Expected: Small value (ideal is 2^(n-2)).
@@ -119,6 +130,7 @@ def pretty_table(matrix, label, max_size=_sage_const_16 ):
     # Indicate if rows are truncated
     if nrows > max_size:
         print("...")
+
 
 # Display formatted tables
 pretty_table(S.difference_distribution_table(), "Difference Distribution Table (DDT)")
