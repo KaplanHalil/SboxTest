@@ -6,6 +6,7 @@ from sage.all_cmdline import *   # import sage library
 _sage_const_16 = Integer(16); _sage_const_6 = Integer(6); _sage_const_3 = Integer(3); _sage_const_0 = Integer(0)
 import AES_256 as cipher
 from sage.crypto.sbox import SBox
+from PIL import Image
 
 sbox_hex = cipher.SBOX
 

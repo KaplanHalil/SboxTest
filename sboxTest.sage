@@ -1,5 +1,6 @@
 import AES_256 as cipher
 from sage.crypto.sbox import SBox
+from PIL import Image
 
 sbox_hex = cipher.SBOX
 
